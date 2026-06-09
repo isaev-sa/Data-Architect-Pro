@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: raw_stage_grants
+    schema: raw_stage_grants
+    tables:
+      - name: pres_grants
