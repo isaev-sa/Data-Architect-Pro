@@ -56,6 +56,7 @@ x-airflow-common:
 services:
   database:
     image: "pgvector/pgvector:pg16"
+    shm_size: 1gb
     container_name: postgres_dwh
     ports:
       - 5432:5432
@@ -89,7 +90,10 @@ services:
       - ./docker_volumes/superset_data/db:/var/lib/postgresql/data
 
   superset:
-    image: apache/superset:6.0.0-dev
+    # image: apache/superset:4.1.3
+    build:
+      context: .
+      dockerfile: ./docker/superset/Dockerfile
     container_name: superset_app
     restart: unless-stopped
     # ИСПРАВЛЕНО: Сначала запускаем миграции и создание админа, а затем стартуем сам веб-сервер
@@ -108,8 +112,10 @@ services:
       SQL_ALCHEMY_DATABASE_URI: "postgresql://superset:superset_password@superset-db:5432/superset"
       REDIS_HOST: "superset-redis"
       REDIS_PORT: 6379
+      SUPERSET_CONFIG_PATH: "/app/superset_config.py"
     volumes:
       - ./docker_volumes/superset_data/home:/app/superset_home
+      - ./docker/superset/superset_config.py:/app/superset_config.py
     depends_on:
       - superset-db
       - superset-redis

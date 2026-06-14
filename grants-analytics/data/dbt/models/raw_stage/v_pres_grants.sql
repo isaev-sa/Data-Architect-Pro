@@ -18,7 +18,11 @@ select
 	   pres_grants."name", 
        pres_grants.contest, 
        pres_grants."year",
-       replace(direction, ' — долгосрочный проект', '') as direction,
+       TRIM(
+        REGEXP_REPLACE(
+            replace(direction, ' — долгосрочный проект', ''), 
+            '\s+', ' ', 'g')
+        ) as direction,
        direction like '%долгосрочный проект%' as  is_long_term_project,
        pres_grants.date_req, 
        pres_grants.region, 
