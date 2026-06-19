@@ -16,13 +16,10 @@ logs/
 *.pyd
 
 # Конфигурации и секреты (содержат пароли и ключи доступа)
-.env
-dag.config
+*.env
+*dag.config
 
 # Локальные папки Docker (если туда монтируются volumes)
-docker_volumes/
+*docker_volumes/
 
-
-dbt/target/
-dbt/dbt_packages/
-dbt/logs/
+*model_artifacts

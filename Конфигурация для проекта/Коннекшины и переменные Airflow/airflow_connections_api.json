@@ -1,0 +1,29 @@
+{
+  "connections": [
+    {
+      "connection_id": "postgres_dwh",
+      "conn_type": "postgres",
+      "description": null,
+      "host": "postgres_dwh",
+      "login": "username",
+      "schema": "dwh",
+      "port": 5432,
+      "password": "***",
+      "extra": null,
+      "team_name": null
+    },
+    {
+      "connection_id": "fs_default",
+      "conn_type": "fs",
+      "description": null,
+      "host": null,
+      "login": null,
+      "schema": null,
+      "port": null,
+      "password": null,
+      "extra": "{\"path\": \"\"}",
+      "team_name": null
+    }
+  ],
+  "total_entries": 2
+}
